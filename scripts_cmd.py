@@ -32,12 +32,14 @@ async def scripts_cmd(ctx, bot):
     scripts = []
 
     try:
-        for file in os.listdir(f'scripts/{total[int(category.content) - 1].lower()}'):
+        for file in os.listdir(f'scripts/{total[int(category.content) - 1]}'):
             if os.path.isfile:
                 scripts.append(file)
     except:
         await ctx.send(embed=await emb_error('File was not found in list or something went wrong. Please try again.'))
         return
+
+    print('good 2')
 
     if 'sbg' in total[int(category.content) - 1].lower():
 
@@ -141,8 +143,8 @@ async def scripts_cmd(ctx, bot):
 
         try:
             if not total[int(category.content) - 1] == 'Favorites':
-                await ctx.send(file=discord.File(f'./scripts/{total[int(category.content) - 1]}/{scripts[int(selected.content) - 1]}'), view=await favorite(f'./scripts/{total[int(category.content) - 1]}/{scripts[int(selected.content) - 1]}', ctx))
+                await ctx.send(file=discord.File(f'scripts/{total[int(category.content) - 1]}/{scripts[int(selected.content) - 1]}'), view=await favorite(f'scripts/{total[int(category.content) - 1]}/{scripts[int(selected.content) - 1]}', ctx))
             else:
-                await ctx.send(file=discord.File(f'./scripts/{total[int(category.content) - 1]}/{scripts[int(selected.content) - 1]}'))
+                await ctx.send(file=discord.File(f'scripts/{total[int(category.content) - 1]}/{scripts[int(selected.content) - 1]}'))
         except FileNotFoundError:
             await ctx.send(embed=emb_error('File could not be found in list or something wen wrong. Please try again.'))  
